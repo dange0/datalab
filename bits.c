@@ -1,4 +1,3 @@
-#include <stdio.h>
 /*
  * Modified CS:APP Data Lab
  *
@@ -180,7 +179,11 @@ int allOddBits(int x)
  */
 int anyEvenBit(int x)
 {
-    return 42;
+    x |= x >> 2;
+    x |= x >> 4;
+    x |= x >> 8;
+    x |= x >> 16;
+    return (x & 0x1);
 }
 
 /*
@@ -193,7 +196,11 @@ int anyEvenBit(int x)
  */
 int anyOddBit(int x)
 {
-    return 42;
+    x |= x >> 2;
+    x |= x >> 4;
+    x |= x >> 8;
+    x |= x >> 16;
+    return ((x >> 0x1) & 0x1);
 }
 
 /*
