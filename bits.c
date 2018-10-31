@@ -1,3 +1,4 @@
+#include <stdio.h>
 /*
  * Modified CS:APP Data Lab
  *
@@ -127,7 +128,12 @@ int absVal(int x)
  */
 int addOK(int x, int y)
 {
-    return 42;
+    unsigned int x_msb, y_msb, sum_msb;
+    y_msb = (y >> 31);
+    x_msb = (x >> 31);
+    sum_msb = ((x + y) >> 31);
+    return (((x_msb ^ y_msb) + ((~(x_msb ^ y_msb)) & (~(x_msb ^ sum_msb)))) &
+            0x1);
 }
 
 /*
