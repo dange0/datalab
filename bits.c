@@ -1,3 +1,4 @@
+#include <stdio.h>
 /*
  * Modified CS:APP Data Lab
  *
@@ -241,7 +242,25 @@ int bitAnd(int x, int y)
  */
 int bitCount(int x)
 {
-    return 42;
+    int mask1 = 0x55;
+    int mask2 = 0x33;
+    int mask3 = 0x0F;
+    int mask4 = 0xFF;
+    int mask5 = 0xFF;
+    mask1 |= mask1 << 8;
+    mask1 |= mask1 << 16;
+    mask2 |= mask2 << 8;
+    mask2 |= mask2 << 16;
+    mask3 |= mask3 << 8;
+    mask3 |= mask3 << 16;
+    mask4 |= mask4 << 16;
+    mask5 |= mask5 << 8;
+    x = (x & mask1) + ((x >> 1) & mask1);
+    x = (x & mask2) + ((x >> 2) & mask2);
+    x = (x & mask3) + ((x >> 4) & mask3);
+    x = (x & mask4) + ((x >> 8) & mask4);
+    x = (x & mask5) + ((x >> 16) & mask5);
+    return (x & mask5);
 }
 
 /*
